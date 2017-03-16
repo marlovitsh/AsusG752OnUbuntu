@@ -21,6 +21,7 @@ REG_ANYNUMBER='^-?[0-9]*([.][0-9]+)?$'
 ### Helping functions
 ##########################################################################################
 NEWLINE=$'\n'
+
 _help() {
         echo "Set monitor brightness using xrandr"
         echo "Usage: mbg.sh <brightness> [options]"
@@ -41,16 +42,16 @@ _help() {
         echo "             display this help"
 }
 
-min() {
+_min() {
     printf "%s\n" "${@:2}" | sort "$1" | head -n1
 }
 
-max() {
+_max() {
     # using sort's -r (reverse) option - using tail instead of head is also possible
-    min ${1}r ${@:2}
+    _min ${1}r ${@:2}
 }
 
-getCurrentBrightness()	{
+_getCurrentBrightness()	{
 	# only use entries with " connected " - no "disconnected" - these are the names
 	xrandr=$(xrandr --verbose)
 	REGConnect=' connected '
@@ -142,7 +143,7 @@ if [[ $hasErrors -eq 1 ]] ; then
 fi
 
 # get current brightness
-currentBrightness=$(getCurrentBrightness)
+currentBrightness=$(_getCurrentBrightness)
 #currentBrightness=$(xrandr --verbose | grep rightness | awk '{ print $2 }')
 
 # get current device 
@@ -182,8 +183,8 @@ esac
 
 # set min and max
 if [ $forceParam -eq 0 ] 2>/dev/null; then
-	newBrightness=$(min -g $MAX $newBrightness)
-	newBrightness=$(max -g $MIN $newBrightness)
+	newBrightness=$(_min -g $MAX $newBrightness)
+	newBrightness=$(_max -g $MIN $newBrightness)
 fi
 
 # gotcha - set the new value
@@ -191,6 +192,6 @@ echo "xrandr --output "$DISP_NAME" --brightness $newBrightness"
 xrandr --output "$DISP_NAME" --brightness $newBrightness
 
 # show new brightness
-currentBrightness=$(getCurrentBrightness)
+currentBrightness=$(_getCurrentBrightness)
 #currentBrightness=$(xrandr --verbose | grep rightness | awk '{ print $2 }')
 echo "new brightness set to $currentBrightness"

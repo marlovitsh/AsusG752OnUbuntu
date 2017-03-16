@@ -1,0 +1,11 @@
+nur pc bildschirm
+Duplizieren
+Erweitern
+Nur zweiter Bildschirm
+
+->
+Nur PC-Bildschirm
+Duplizieren
+Erweitern
+Nur zweiter Bildschirm
+Aussuchen, worauf projizieren, wenn mehr als ein Zusatzbildschirm

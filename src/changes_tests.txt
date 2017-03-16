@@ -1,0 +1,17 @@
+changed /usr/share/X11/xorg.conf.d/50-synaptics.conf +++++
+sudo apt-get install kde-config-touchpad
+
+
+Custom configuration files follow this priority:
+
+    settings from /usr/share/X11/xorg.conf.d/
+    udev rules (I'm not quite sure about udev priority, maybe less)
+    settings from /etc/X11/xorg.conf.d/
+    settings in /etc/X11/xorg.conf
+
+
+
+
+Mousebuttons remapping:
+xev
+http://askubuntu.com/questions/492744/how-do-i-automatically-remap-buttons-on-my-mouse-at-startup/492745#492745
