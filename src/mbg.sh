@@ -22,8 +22,9 @@ REG_ANYNUMBER='^-?[0-9]*([.][0-9]+)?$'
 ##########################################################################################
 NEWLINE=$'\n'
 _help() {
+        echo "Set monitor brightness using xrandr"
         echo "Usage: mbg.sh <brightness> [options]"
-        echo "  where brightness may be:"
+                echo "  where brightness may be:"
         echo "     [none]  set brightness to 1 (full)"
         echo "     +       increment current brightness (up to 1 max)"
         echo "     -       decrement current brightness (down to 0.1 min)"
