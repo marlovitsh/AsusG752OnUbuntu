@@ -1,6 +1,18 @@
 #!/bin/bash
 # mbg.sh
 
+################################################################################
+#  Copyright (c) 2017, marlovitsh, Harald Marlovits, marlovitsh@gmail.com
+#  All rights reserved. This program and the accompanying materials
+#  are made available under the terms of the Eclipse Public License v1.0
+#  which accompanies this distribution, and is available at
+#  http://www.eclipse.org/legal/epl-v10.html
+# 
+#  Contributors:
+#     H. Marlovits - initial implementation
+#
+################################################################################
+
 ##########################################################################################
 ### SETTINGS
 ##########################################################################################
@@ -22,6 +34,8 @@ REG_ANYNUMBER='^-?[0-9]*([.][0-9]+)?$'
 ##########################################################################################
 NEWLINE=$'\n'
 
+##########################################################################################
+### show the help
 _help() {
         echo "Set monitor brightness using xrandr"
         echo "Usage: mbg.sh <brightness> [options]"
@@ -42,15 +56,24 @@ _help() {
         echo "             display this help"
 }
 
+##########################################################################################
+### return min of two params
+#   example: minValue=$(_min -g $val1 $val2)
 _min() {
     printf "%s\n" "${@:2}" | sort "$1" | head -n1
 }
 
+##########################################################################################
+### return max of two params
+#   example: maxValue=$(_max -g $val1 $val2)
 _max() {
     # using sort's -r (reverse) option - using tail instead of head is also possible
     _min ${1}r ${@:2}
 }
 
+##########################################################################################
+### get the current brightness from xrandr
+#   example: currentBrightness=$(_getCurrentBrightness)
 _getCurrentBrightness()	{
 	# only use entries with " connected " - no "disconnected" - these are the names
 	xrandr=$(xrandr --verbose)
@@ -83,11 +106,11 @@ _getCurrentBrightness()	{
 ### now do our stuff
 ##########################################################################################
 
-# set default brightness, force param
+### set default brightness, force param
 brightnessParam=$DEFAULT
 forceParam=0
 
-# loop through parameters
+### loop through parameters
 errorStr=""
 gotBrightnessParam=0
 hasErrors=0
@@ -135,20 +158,19 @@ for ((i=1; i<=$#; i++)); do
 	fi
 done
 
-# on parameter errors -> show errors and exit
+### on parameter errors -> show errors and exit
 if [[ $hasErrors -eq 1 ]] ; then
 	printf '%s' "$errorStr"
 	_help
 	exit
 fi
 
-# get current brightness
+### get current brightness
 currentBrightness=$(_getCurrentBrightness)
-#currentBrightness=$(xrandr --verbose | grep rightness | awk '{ print $2 }')
 
-# get current device 
-DISP_NAME=$(xrandr | grep " connected"  | awk '{print $1}')
-# only use entries with " connected " - no "disconnected" - these are the names
+### get current device 
+#DISP_NAME=$(xrandr | grep " connected"  | awk '{print $1}')
+### only use entries with " connected " - no "disconnected" - these are the names
 xrandr=$(xrandr --verbose)
 REGConnect=' connected '
 DISP_NAME=""
