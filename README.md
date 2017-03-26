@@ -3,9 +3,14 @@ My Scripts to make my ASUS G752VS-BA384T work with Ubuntu 16.04
 
 ## Problem 1 - solved in progress
 Elan Touchpad buttons not working correctly:
+
 left button acting like right button
-right button acting like middle button
+
+right button acting like middle buttonu
+
 solved with a script which remaps the buttons
+
+NOT needed on Ubuntu and derivatives >= 17
 
 ## Problem 2 - workaround in progress
 FN - mostly not working except
@@ -14,7 +19,7 @@ FN - mostly not working except
   - FN-F12, Audio raise volume4
   - FN-HOME, Num Lock
 
-Can't detect or activate the FN key correctly
+Can't detect or activate the FN key correctly, can't change any bios settings to achieve this
 
 As a workaround I use the windows button instead in combination with the function keys
 
@@ -38,6 +43,10 @@ have still to test to find best settings
 
 ## Problem 5 - not solved
 closing the lid doesn't cause any action - should send my laptop to sleep...
+
+http://askubuntu.com/questions/763085/with-ubuntu-16-04-laptop-doesnt-suspend-when-lid-is-closed
+
+http://askubuntu.com/questions/395428/laptop-does-not-suspend-when-lid-is-closed/427193#427193
 
 ## Problem 6 - not solved
 Battery loading % correctly shown

@@ -10,7 +10,6 @@
 #                    kernel's binfmt_misc facility.
 ### END INIT INFO
 
-
 ################################################################################
 #  Copyright (c) 2017, marlovitsh, Harald Marlovits, marlovitsh@gmail.com
 #  All rights reserved. This program and the accompanying materials
@@ -42,6 +41,17 @@ BUTTON_REMAPPING="2>3,3>1"
 ##########################################################################################
 ### PROGRAM - don't need to change anything
 ##########################################################################################
+
+### my common functions
+source ./utils.sh
+
+### if ubuntu variant >= 17 then no need to correct - only up to 16 buggy
+distributorID=$(_getDistributorId)
+if [[ "$(_isUbuntuVariant)" == "1" ]]; then
+	if [[ $(_getDistributorVersionMain) -gt 16 ]]; then
+		exit
+	fi	
+fi
 
 ### prepend "," for simple searching
 BUTTON_REMAPPING=",$BUTTON_REMAPPING"

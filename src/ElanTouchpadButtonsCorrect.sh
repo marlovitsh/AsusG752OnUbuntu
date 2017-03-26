@@ -98,8 +98,7 @@ _selectInput___(){
 					# remove the ","
 					buttonNumber=${buttonNumber//[\,]/}
 					# add to array
-					buttonsArray+=($buttonN01:35
-umber)
+					buttonsArray+=($buttonNumber)
 					catchingPressButton=0
 				fi
 			fi
