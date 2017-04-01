@@ -1,16 +1,18 @@
 # AsusG752OnUbuntu
 My Scripts to make my ASUS G752VS-BA384T work with Ubuntu 16.04
 
-## Problem 1 - solved in progress
+## Problem 1 - solved
 Elan Touchpad buttons not working correctly:
 
 left button acting like right button
 
-right button acting like middle buttonu
+right button acting like middle button
 
 solved with a script which remaps the buttons
 
 NOT needed on Ubuntu and derivatives >= 17
+
+script is called on login -> not active when logged out...
 
 ## Problem 2 - workaround in progress
 FN - mostly not working except
@@ -34,6 +36,10 @@ as for now not yet found a way to detect them being pressed
 
 xev, etc nothing at all... hmmmmm...
 
+umon detects the keys
+
+now I need a way to catch and redirect them
+
 ## Problem 4 - solved in progress
 wrist detection for touchpad
 
@@ -49,6 +55,6 @@ http://askubuntu.com/questions/763085/with-ubuntu-16-04-laptop-doesnt-suspend-wh
 http://askubuntu.com/questions/395428/laptop-does-not-suspend-when-lid-is-closed/427193#427193
 
 ## Problem 6 - not solved
-Battery loading % correctly shown
+Battery loading not correctly shown
 
 Always shows battery mode, not loading, even if connected

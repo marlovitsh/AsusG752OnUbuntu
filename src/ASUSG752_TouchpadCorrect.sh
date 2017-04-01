@@ -1,6 +1,6 @@
 #! /bin/bash
 ### BEGIN INIT INFO
-# Provides:          binfmt-support
+# Provides:          asus_touchpad
 # Required-Start:    $local_fs $remote_fs
 # Required-Stop:     $local_fs $remote_fs
 # Default-Start:     2 3 4 5
@@ -8,6 +8,8 @@
 # Short-Description: Support for extra binary formats
 # Description:       Enable support for extra binary formats using the Linux
 #                    kernel's binfmt_misc facility.
+#                    NOT WORKING - BIN ZU BLOED...
+#                    xinput not yet working when called in init.d scripts
 ### END INIT INFO
 
 ################################################################################
@@ -25,25 +27,27 @@
 ### what it does:
 ### read the id of our touchpad from xinput
 ### read the number of buttons for it from xinput
-### create a new mapping with this info
+### create a new mapping with this info and BUTTON_REMAPPING (see SETTINGS)
 ### set the new mapping for our touchpad
 
 ################################################################################
 ### SETTINGS
 ################################################################################
+
 ### the name for the elan touchpad found in xinput, case insensitive
+#   must search by name since the id may change
 TOUCHPAD_MATCHER="ELAN.*Touchpad"
 
 ### how to remap the buttons
 #   remap right button (3) to left button (1), middle button (2) to right button (3)
 BUTTON_REMAPPING="2>3,3>1"
 
-##########################################################################################
+################################################################################
 ### PROGRAM - don't need to change anything
-##########################################################################################
+################################################################################
 
 ### my common functions
-source ./utils.sh
+source $(dirname $0)/utils.sh
 
 ### if ubuntu variant >= 17 then no need to correct - only up to 16 buggy
 distributorID=$(_getDistributorId)
@@ -52,6 +56,8 @@ if [[ "$(_isUbuntuVariant)" == "1" ]]; then
 		exit
 	fi	
 fi
+
+### may be there should be more tests for other distributions - add here...
 
 ### prepend "," for simple searching
 BUTTON_REMAPPING=",$BUTTON_REMAPPING"
